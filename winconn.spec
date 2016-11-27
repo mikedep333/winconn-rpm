@@ -6,12 +6,13 @@
 
 Name:    winconn
 Version: 0.2.14
-Release: 2%{?shortcommit0:.%{date}git%{shortcommit0}}%{?dist}
+Release: 2%{?shortcommit0:.%{date}git%{shortcommit0}}%{?dist}.1
 Summary: RemoteApp manager
 
 License: GPLv3
 URL: http://stanev.org/winconn/
 Source0: https://github.com/RealEnder/winconn/archive/%{commit0}/winconn-%{commit0}.tar.gz#/winconn-%{shortcommit0}.tar.gz
+Patch0: Revert-Move-to-new-xfreerdp-cli-configuration.patch
 BuildArch: noarch
 
 BuildRequires: python2-devel
@@ -40,7 +41,7 @@ Requires: dbus-x11
 WinConn simplifies creation, management and desktop integration of remote windows applications in Linux. It uses RemoteApp technology, implemented by FreeRDP project to provide seamless user experience. The applications run in their own window and can be used like any other locally installed Linux application, without bringing the full windows desktop to the user.
 
 %prep
-%autosetup -n %{name}-%{commit0}
+%autosetup -n %{name}-%{commit0} -p1
 
 %build
 %py2_build
@@ -67,6 +68,9 @@ rm -rf %{buildroot}/usr/share/apport/
 %{_datadir}/winconn/ui/*
 
 %changelog
+* Sat Dec 03 2016 Mike DePaulo <mikedep333@gmail.com> - 0.2.14-2.20151228git3a6dff8.1
+- Add patch to revert to old FreeRDP 1.0.x logic (for EPEL7)
+
 * Sat Dec 03 2016 Mike DePaulo <mikedep333@gmail.com> - 0.2.14-2.20151228git3a6dff8
 - Fix gobject dependency
 - Add dependency on dbus-x11
