@@ -44,8 +44,7 @@ WinConn simplifies creation, management and desktop integration of remote window
 
 %install
 # Workaround winconn.desktop never being installed
-mkdir -p %{buildroot}/usr/share/applications
-install ./build/share/applications/winconn.desktop %{buildroot}/usr/share/applications/winconn.desktop
+install -D ./build/share/applications/winconn.desktop %{buildroot}/usr/share/applications/winconn.desktop
 
 %py2_install
 
