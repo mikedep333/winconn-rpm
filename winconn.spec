@@ -34,6 +34,7 @@ Requires: dbus-python
 # It seems odd that this requires gtk3 but pygobject2, but it does, both
 # emperically and according to the ubuntu control file that upstream ships.
 Requires: pygobject2
+Requires: dbus-x11
 
 %description
 WinConn simplifies creation, management and desktop integration of remote windows applications in Linux. It uses RemoteApp technology, implemented by FreeRDP project to provide seamless user experience. The applications run in their own window and can be used like any other locally installed Linux application, without bringing the full windows desktop to the user.
@@ -68,6 +69,7 @@ rm -rf %{buildroot}/usr/share/apport/
 %changelog
 * Sat Dec 03 2016 Mike DePaulo <mikedep333@gmail.com> - 0.2.14-2.20151228git3a6dff8
 - Fix gobject dependency
+- Add dependency on dbus-x11
 
 * Sun Nov 27 2016 Mike DePaulo <mikedep333@gmail.com> - 0.2.14-1.20151228git3a6dff8
 - Initial version
