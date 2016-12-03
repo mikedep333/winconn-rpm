@@ -6,7 +6,7 @@
 
 Name:    winconn
 Version: 0.2.14
-Release: 1%{?shortcommit0:.%{date}git%{shortcommit0}}%{?dist}
+Release: 2%{?shortcommit0:.%{date}git%{shortcommit0}}%{?dist}
 Summary: RemoteApp manager
 
 License: GPLv3
@@ -31,7 +31,9 @@ Requires: yelp
 Requires: freerdp
 Requires: xdg-utils
 Requires: dbus-python
-Requires: python-gobject-base
+# It seems odd that this requires gtk3 but pygobject2, but it does, both
+# emperically and according to the ubuntu control file that upstream ships.
+Requires: pygobject2
 
 %description
 WinConn simplifies creation, management and desktop integration of remote windows applications in Linux. It uses RemoteApp technology, implemented by FreeRDP project to provide seamless user experience. The applications run in their own window and can be used like any other locally installed Linux application, without bringing the full windows desktop to the user.
@@ -64,5 +66,8 @@ rm -rf %{buildroot}/usr/share/apport/
 %{_datadir}/winconn/ui/*
 
 %changelog
+* Sat Dec 03 2016 Mike DePaulo <mikedep333@gmail.com> - 0.2.14-2.20151228git3a6dff8
+- Fix gobject dependency
+
 * Sun Nov 27 2016 Mike DePaulo <mikedep333@gmail.com> - 0.2.14-1.20151228git3a6dff8
 - Initial version
